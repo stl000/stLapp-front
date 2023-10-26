@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/usuario';
 
 @Component({
@@ -11,8 +11,15 @@ export class GestorUsuariosComponent {
 
   listaUsuarios!: Usuario[];
 
-  constructor(){
-    
+  constructor(private usuarioService:UsuarioService) {
+    this.obtenerUsuarios();
+  }
+
+  obtenerUsuarios():void{
+      this.usuarioService.getAllUsers().subscribe((data:any)=>{
+        console.log(data);
+        this.listaUsuarios=data;
+      })
   }
 
 

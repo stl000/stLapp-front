@@ -15,4 +15,8 @@ export class UsuarioService {
     return this.httpClient.post(baseURL+'/usuarios/', usuario)
   }
 
+  getAllUsers(){
+    return this.httpClient.get(baseURL+"/usuarios/lista-usuarios")
+  }
+
 }
