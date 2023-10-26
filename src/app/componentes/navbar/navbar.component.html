@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="isLoggedIn()">
+      <a class="navbar-brand">Mi App</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link"
+            routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            Dashboard</a>
+          <a class="nav-link" *ngIf="getUserRol()=='ADMIN'" 
+            routerLink="/gestor-usuarios" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            Gestor Usuarios</a>
+          <a class="nav-link dropdown"
+            routerLink="/perfil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            {{getUsername()}}</a>
+          <a class="nav-link"
+          routerLink="/inicio" (click)="logout()">Logout</a>
+        </div>
+      </div>
+  </nav>

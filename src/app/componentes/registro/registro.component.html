@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+            <!-- Nested Row within Card Body -->
+            <div class="row ">
+                <div class="col-md-6 offset-md-3">
+                    <div class="p-5">
+                        <div class="container text-center">
+                        <img src="../../../assets/img/Logo.png" alt="" width="200px" class="mb-4" routerLink="/inicio">
+                        <h1 class="text-center h4 text-gray-900 mb-4">Create an Account!</h1>
+                        </div>
+                        <form class="user" [formGroup]="formUsuario">
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Nombre</mat-label>
+                                <input matInput placeholder="Escribe tu nombre" formControlName="nombreID">
+                            </mat-form-field>
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Apellidos</mat-label>
+                                <input matInput placeholder="Escribe tus apellidos" formControlName="apellidosID">
+                            </mat-form-field>
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Telefono</mat-label>
+                                <input matInput placeholder="Escribe tu telefono" formControlName="telefonoID">
+                            </mat-form-field>
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input matInput required type="email" placeholder="Escribe tu email" formControlName="emailID">
+                            </mat-form-field>
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Nombre de usuario</mat-label>
+                                <input matInput required placeholder="Escribe tu nombre de usuario" formControlName="usernameID">
+                            </mat-form-field>
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Password</mat-label>
+                                <input matInput required type="password" placeholder="Escribe tu password" formControlName="passwordID">
+                            </mat-form-field>
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Repeat Password</mat-label>
+                                <input matInput required type="password" placeholder="Repite tu password" formControlName="repeatPasswordID">
+                            </mat-form-field>
+
+                            <div class="container text-center">
+                                <button mat-raised-button color="primary" (click)="registrarUsuario()" routerLink="/login">Registrar</button>
+                                <button type="reset" class="ms-2" mat-raised-button color="accent">Limpiar</button>
+                            </div>
+                        </form>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" routerLink="/login">Already have an account? Login!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>
