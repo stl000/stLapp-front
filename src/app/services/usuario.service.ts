@@ -19,4 +19,12 @@ export class UsuarioService {
     return this.httpClient.get(baseURL+"/usuarios/lista-usuarios")
   }
 
+  getUserByUsername(userName:string){
+    return this.httpClient.get(baseURL+"/usuarios/"+userName)
+  }
+
+  deleteUserById(id:number){
+    return this.httpClient.delete(baseURL+"/usuarios/"+id)
+  }
+
 }

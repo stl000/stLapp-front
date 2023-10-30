@@ -41,13 +41,12 @@ export class LoginComponent {
       Swal.fire("Usuario logueado con éxito","El usuario ha iniciado sesión correctamente", "success");
       this.authService.setToken(data.token);
       this.authService.getCurrentUser().subscribe((user:any) =>{
-        console.log("Usuario obtenido: "+user);
         this.authService.setUser(user);
 
         console.log("Obtener rol: "+this.authService.getUserRol());
         if(this.authService.getUserRol() == 'ADMIN' || this.authService.getUserRol() == 'USER'){
-          this.router.navigate(['/dashboard'])
           this.authService.loginStatusSubject.next(true);
+          this.router.navigate(['/dashboard'])
         }else{
           this.authService.logout();
         }

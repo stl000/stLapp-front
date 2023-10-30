@@ -45,7 +45,7 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  setUser(usuario:Usuario){
+  setUser(usuario:any){
     localStorage.setItem('user', JSON.stringify(usuario));
     console.log("user seteado: "+localStorage.getItem('user'))
   }
