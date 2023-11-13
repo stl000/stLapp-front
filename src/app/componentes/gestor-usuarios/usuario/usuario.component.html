@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="p-5">
+                    <div class="container text-center">
+                        <h1 class="text-center h4 text-gray-900 mb-4">
+                            Editar perfil: {{usuario.username}}
+                        </h1>
+                    </div>
+                    <form class="user" [formGroup]="formUsuario">
+                        <mat-form-field class="full-width">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput required placeholder="Inserte nuevo nombre"
+                            formControlName="nombreID"/>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width">
+                            <mat-label>Apellidos</mat-label>
+                            <input matInput required placeholder="Inserte nuevos apellidos"
+                            formControlName="apellidosID"/>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width">
+                            <mat-label>Telefono</mat-label>
+                            <input matInput required placeholder="Inserte nuevo telefono"
+                            formControlName="telefonoID"/>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width">
+                            <mat-label>Email</mat-label>
+                            <input matInput required placeholder="Inserte nuevo email"
+                            formControlName="emailID" type="email" />
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width">
+                            <mat-label>Nombre de usuario</mat-label>
+                            <input matInput required placeholder="Inserte nuevo nombre de usuario"
+                            formControlName="usernameID"/>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="Inserte nueva password"
+                            formControlName="passwordID" type="password"/>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width">
+                            <mat-label>Repita la password</mat-label>
+                            <input matInput placeholder="Repita la nueva password"
+                            formControlName="repeatPasswordID" type="password" />
+                        </mat-form-field>
+
+                        <div class="container text-center">
+                            <button class="me-2 mb-4" (click)="actualizarUsuario()" routerLink="/gestor-usuarios" mat-raised-button color="primary">
+                                Guardar
+                            </button>
+                            <button class="me-2 mb-4" type="button" mat-raised-button color="accent"
+                                routerLink="/gestor-usuarios">
+                                Volver
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

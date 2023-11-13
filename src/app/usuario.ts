@@ -8,6 +8,8 @@ export class Usuario {
     username!: string;
     password!: string;
     perfil!: string;
+    authorities!: any[];
+    enabled!:boolean;
 
     constructor(){}
 

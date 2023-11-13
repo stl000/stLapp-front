@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-action-list>
+        <div mat-subheader>Menu</div>
+        <button mat-list-item routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <mat-icon mat-list-icon>home</mat-icon> Inicio
+        </button>
+        <button mat-list-item routerLink="/perfil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <mat-icon mat-list-icon>account_circle</mat-icon> Perfil
+        </button>
+        <button *ngIf="getUserRol()=='ADMIN'" mat-list-item routerLink="/gestor-usuarios" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <mat-icon mat-list-icon>list</mat-icon> Gestor Usuarios
+        </button>
+        <button (click)="logout()" routerLink="/perfil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <mat-icon mat-list-icon>logout</mat-icon> Salir
+        </button>
+    </mat-action-list>
+</mat-card>

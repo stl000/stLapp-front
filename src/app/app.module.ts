@@ -8,7 +8,7 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { GestorUsuariosComponent } from './componentes/gestor-usuarios/gestor-usuarios.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
-import { ListadoUsuariosComponent } from './componentes/gestor-usuarios/listado-usuarios/listado-usuarios.component';
+import { UsuarioComponent } from './componentes/gestor-usuarios/usuario/usuario.component';
 import { PageNotFoundComponent } from './componentes/page-not-found/page-not-found.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
@@ -21,6 +21,11 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { authInterceptorProviders } from './services/auth.interceptor';
+import { ListadoUsuariosComponent } from './componentes/gestor-usuarios/listado-usuarios/listado-usuarios.component';
+import {MatListModule} from '@angular/material/list';
+import { SidebarComponent } from './componentes/sidebar/sidebar.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -31,11 +36,13 @@ import { authInterceptorProviders } from './services/auth.interceptor';
     LoginComponent,
     GestorUsuariosComponent,
     PerfilComponent,
-    ListadoUsuariosComponent,
+    UsuarioComponent,
     PageNotFoundComponent,
     FooterComponent,
     NavbarComponent,
     DashboardComponent,
+    ListadoUsuariosComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,10 @@ import { authInterceptorProviders } from './services/auth.interceptor';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatListModule,
+    MatCardModule,
+    MatIconModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

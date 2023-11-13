@@ -1,0 +1,7 @@
+.profile-image{
+    margin-left: 0px;
+    max-width: 30px;
+    max-height: 30px;
+    border: 2px solid gainsboro;
+    border-radius: 50%;
+}

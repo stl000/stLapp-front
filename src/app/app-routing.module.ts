@@ -7,6 +7,8 @@ import { GestorUsuariosComponent } from './componentes/gestor-usuarios/gestor-us
 import { PageNotFoundComponent } from './componentes/page-not-found/page-not-found.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
+import { UsuarioComponent } from './componentes/gestor-usuarios/usuario/usuario.component';
+import { ListadoUsuariosComponent } from './componentes/gestor-usuarios/listado-usuarios/listado-usuarios.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full'},
@@ -14,7 +16,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegistroComponent},
   { path: 'perfil', component: PerfilComponent},
-  { path: 'gestor-usuarios', component: GestorUsuariosComponent},
+  { path: 'gestor-usuarios', component: GestorUsuariosComponent, children: [ 
+    { path: '', component: ListadoUsuariosComponent},
+    { path: 'usuario/:id', component: UsuarioComponent}  
+  ]},
   { path: 'dashboard', component: DashboardComponent},
   { path: '**', component: PageNotFoundComponent}
 ];

@@ -7,18 +7,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  @Input() rol!:any;
 
   constructor(private authService:AuthService){
 
-  }
-
-  isLoggedIn(){
-    return this.authService.isLoggedIn()
-  }
-
-  getUserRol(){
-    return this.authService.getUserRol();
   }
 
   logout(){

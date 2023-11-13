@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { Usuario } from 'src/app/usuario';
 
 @Component({
   selector: 'app-perfil',
@@ -8,8 +9,19 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class PerfilComponent {
 
-  constructor(){
+  usuario:Usuario = new Usuario();
+
+  constructor(private authService:AuthService){
     
   }
 
+  ngOnInit():void{
+    this.usuario = this.authService.getUser();
+    /*
+    this.authService.getCurrentUser().subscribe((data:any) => {
+      this.usuario = data;
+    }, error => console.log(error))
+    */
+  }
+  
 }

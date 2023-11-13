@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="isLoggedIn()">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand">Mi App</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -6,16 +6,15 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
           <a class="nav-link"
-            routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            Dashboard</a>
-          <a class="nav-link" *ngIf="getUserRol()=='ADMIN'" 
-            routerLink="/gestor-usuarios" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            Gestor Usuarios</a>
-          <a class="nav-link dropdown"
-            routerLink="/perfil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            {{getUsername()}}</a>
+          routerLink="/inicio" (click)="logout()">Cerrar sesión</a>
           <a class="nav-link"
-          routerLink="/inicio" (click)="logout()">Logout</a>
+            routerLink="/perfil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            {{getUsername()}}
+          </a>
+          <a class="nav-link"
+            routerLink="/perfil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" class="profile-image">
+          </a>
         </div>
       </div>
   </nav>

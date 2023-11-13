@@ -2,29 +2,33 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import baseURL from './helper'
 import { Usuario } from '../usuario';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-
-  
+    
   constructor(private httpClient: HttpClient) { }
 
-  public addUsuario( usuario:Usuario){
+  addUsuario( usuario:Usuario){
     return this.httpClient.post(baseURL+'/usuarios/', usuario)
   }
 
   getAllUsers(){
-    return this.httpClient.get(baseURL+"/usuarios/lista-usuarios")
+    return this.httpClient.get(baseURL+"/usuarios/")
   }
 
-  getUserByUsername(userName:string){
-    return this.httpClient.get(baseURL+"/usuarios/"+userName)
+  getUserById(id:number){
+    return this.httpClient.get(baseURL+"/usuarios/"+id)
   }
 
   deleteUserById(id:number){
     return this.httpClient.delete(baseURL+"/usuarios/"+id)
+  }
+
+  updateUsuario(id:number, usuario: any) {
+    return this.httpClient.put(baseURL+"/usuarios/"+id, usuario)
   }
 
 }
