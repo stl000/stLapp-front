@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { Usuario } from 'src/app/usuario';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,7 +8,7 @@ import { Usuario } from 'src/app/usuario';
 })
 export class SidebarComponent {
 
-  usuario:Usuario = new Usuario();
+  usuario!:any;
 
   constructor(private authService:AuthService){}
 

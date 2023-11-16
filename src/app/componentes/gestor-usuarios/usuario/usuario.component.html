@@ -53,11 +53,11 @@
                         </mat-form-field>
 
                         <div class="container text-center">
-                            <button class="me-2 mb-4" (click)="actualizarUsuario()" routerLink="/gestor-usuarios" mat-raised-button color="primary">
+                            <button class="me-2 mb-4" (click)="actualizarUsuario()" mat-raised-button color="primary">
                                 Guardar
                             </button>
                             <button class="me-2 mb-4" type="button" mat-raised-button color="accent"
-                                routerLink="/gestor-usuarios">
+                                [routerLink]="'/gestor-usuarios'">
                                 Volver
                             </button>
                         </div>

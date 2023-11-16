@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { Usuario } from 'src/app/usuario';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,29 +13,30 @@ import Swal from 'sweetalert2';
 
 export class LoginComponent {
     
-  usuario: Usuario = new Usuario();
-  token!: any;
+  loginData = {
+    "username" : '',
+    "password" : ''
+  }
   constructor(private authService:AuthService, private snackbar:MatSnackBar, private router:Router) {}
 
   loguearUsuario(): void {
-
-    if(this.usuario.username == '' || this.usuario.username == null){
+    if(this.loginData.username == '' || this.loginData.username == null){
       this.snackbar.open("Nombre de usuario requerido","Aceptar",{
         duration:3000,
         verticalPosition:'top',
       })
       return;
     }
-    if(this.usuario.password == '' || this.usuario.password == null){
+    if(this.loginData.password == '' || this.loginData.password == null){
         this.snackbar.open("Contraseña requerida","Aceptar",{
           duration:3000,
           verticalPosition:'top',
         })
         return;
     }
-    console.log(this.usuario)
+    console.log(this.loginData)
 
-    this.authService.generateToken(this.usuario).subscribe((data:any)=>{
+    this.authService.generateToken(this.loginData).subscribe((data:any)=>{
       console.log(data);
       Swal.fire("Usuario logueado con éxito","El usuario ha iniciado sesión correctamente", "success");
       this.authService.setToken(data.token);

@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import baseURL from './helper';
-import { Usuario } from '../usuario';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -13,7 +12,7 @@ export class AuthService {
 
   public loginStatusSubject = new Subject<boolean>();
 
-  generateToken(usuario:Usuario){
+  generateToken(usuario:any){
     return this.httpClient.post(baseURL+"/generate-token", usuario)
   }
 
@@ -29,8 +28,11 @@ export class AuthService {
   isLoggedIn(){
     let tokenStr = localStorage.getItem('token');
     if(tokenStr == undefined || tokenStr == '' || tokenStr == null){
+      console.log("No está logueado")
+      console.log("token para el logueo: "+tokenStr)
       return false;
     }else{
+      console.log("Si está logueado")
       return true;
     }
   }
@@ -38,10 +40,13 @@ export class AuthService {
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    console.log("token eliminado?: "+localStorage.getItem('token'))
+    console.log("user eliminado?: "+localStorage.getItem('user'))
     return true;
   }
 
   getToken(){
+    console.log("token obtenido: "+localStorage.getItem('token'))
     return localStorage.getItem('token');
   }
 
@@ -54,8 +59,10 @@ export class AuthService {
     
     let userStr = localStorage.getItem('user');
     if(userStr != null){
+      console.log("user obtenido: "+userStr)
       return JSON.parse(userStr);
     }else{
+      console.log("user obtenido: null")
       this.logout()
       return null;
     }
@@ -63,6 +70,7 @@ export class AuthService {
 
   getUserRol(){
     let user = this.getUser();
+    console.log("authority obtenido: "+user.authorities[0].authority)
     return user.authorities[0].authority;
   }
 

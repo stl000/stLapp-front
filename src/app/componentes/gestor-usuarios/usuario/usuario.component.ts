@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { Usuario } from 'src/app/usuario';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -23,13 +23,25 @@ export class UsuarioComponent {
   });
 
   id!:number;
-  usuario: Usuario = new Usuario();
+  usuario!: any;
+  rolData!: any;
+  usuarioData = {
+    "nombre": '',
+    "apellidos": '',
+    "email": '',
+    "username": '',
+    "telefono": '',
+    "password": '',
+    "enabled": '',
+    "perfil": ''
+  }
   
-  constructor(private aRoute: ActivatedRoute, private usuarioService: UsuarioService, private snackbar:MatSnackBar) {}
+  constructor(private aRoute: ActivatedRoute, private usuarioService: UsuarioService, private authService:AuthService, private snackbar:MatSnackBar) {}
 
   ngOnInit():void{
     this.id=this.aRoute.snapshot.params['id']
-    this.usuarioService.getUserById(this.id).subscribe((data:any) => {
+    this.usuarioService.getUserById(this.id).subscribe(
+      (data) => {
       console.log(data)
       this.usuario = data
 
@@ -44,17 +56,25 @@ export class UsuarioComponent {
       });
 
     }, error => console.log(error));
+
+    this.authService.getUserRol().subscribe(
+      (data:any) => {
+        console.log(data)
+        this.rolData=data;
+      }, (error: any) => {
+        console.log(error)
+      })
   }
 
   actualizarUsuario(){
-    this.usuario.nombre=this.formUsuario.value.nombreID
-    this.usuario.apellidos=this.formUsuario.value.apellidosID
-    this.usuario.telefono=this.formUsuario.value.telefonoID
-    this.usuario.email=this.formUsuario.value.emailID
-    this.usuario.username=this.formUsuario.value.usernameID
+    this.usuarioData.nombre=this.formUsuario.value.nombreID
+    this.usuarioData.apellidos=this.formUsuario.value.apellidosID
+    this.usuarioData.telefono=this.formUsuario.value.telefonoID
+    this.usuarioData.email=this.formUsuario.value.emailID
+    this.usuarioData.username=this.formUsuario.value.usernameID
     if(this.formUsuario.value.passwordID != '' && this.formUsuario.value.repeatPasswordID != ''){
       if(this.formUsuario.value.passwordID == this.formUsuario.value.repeatPasswordID){
-        this.usuario.password=this.formUsuario.value.passwordID
+        this.usuarioData.password=this.formUsuario.value.passwordID
       }else{
         this.snackbar.open("Las contraseñas son diferentes","Aceptar",{
           duration:3000,
@@ -63,10 +83,12 @@ export class UsuarioComponent {
         return;
       }
     }
-    console.log(this.usuario)
-    this.usuarioService.updateUsuario(this.id, this.usuario).subscribe((data:any)=>{
+    console.log(this.usuarioData)
+    this.usuarioService.updateUsuarioById(this.id, this.usuarioData, this.rolData).subscribe((data:any)=>{
       console.log("data de update: "+data)
-      Swal.fire("Usuario actualizado con éxito","El usuario se ha actualizado correctamente", "success");
+      Swal.fire("Usuario actualizado con éxito","El usuario se ha actualizado correctamente", "success").then( () => {
+        window.location.href="/gestor-usuarios";
+      })
     },(error => {
       console.log(error);
       this.snackbar.open("Ha ocurrido un error en el sistema","Aceptar",{
@@ -74,8 +96,5 @@ export class UsuarioComponent {
         verticalPosition:'top',
       })
     }));
-
   }
-
-
 }

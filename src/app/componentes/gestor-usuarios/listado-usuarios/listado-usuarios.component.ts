@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { Usuario } from 'src/app/usuario';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-listado-usuarios',
@@ -10,11 +11,11 @@ import { Usuario } from 'src/app/usuario';
 })
 export class ListadoUsuariosComponent {
 
-  listaUsuarios!: Usuario[];
+  listaUsuarios!: any[];
   paginaActual: number;
   totalPaginas: number;
 
-  usuario!:Usuario;
+  usuario!:any;
 
   constructor(private usuarioService:UsuarioService, private router:Router) {
     this.paginaActual = 1;
@@ -41,9 +42,23 @@ export class ListadoUsuariosComponent {
       })
   }
 
-  eliminarUsuario(id:number){
-    this.usuarioService.deleteUserById(id).subscribe();
-    window.location.reload();
+  eliminarUsuario(id:number, username:string){
+    Swal.fire({
+      title: "Usuario "+username,
+      text: "¿Esta seguro de que desea eliminar el usuario?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then(resultado => {
+      if (resultado.value) {
+          this.usuarioService.deleteUserById(id).subscribe();
+          window.location.reload();
+      } else {
+        window.location.reload();
+      } 
+
+    })
   }
 
   editarUsuario(id:number){
