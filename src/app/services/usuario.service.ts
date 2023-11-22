@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import baseURL from './helper'
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +17,10 @@ export class UsuarioService {
     return this.httpClient.get(baseURL+"/usuarios/")
   }
 
+  getAllUsersByPage(pagina:number){
+    return this.httpClient.get(baseURL+"/usuarios?page="+pagina)
+  }
+
   getUserById(id:number){
     return this.httpClient.get(baseURL+"/usuarios/"+id)
   }
@@ -26,8 +29,8 @@ export class UsuarioService {
     return this.httpClient.delete(baseURL+"/usuarios/"+id)
   }
 
-  updateUsuarioById(id:number, usuario: any, rolUsuario: any) {
-    return this.httpClient.put(baseURL+"/usuarios/"+id, usuario, rolUsuario)
+  updateUsuarioById(id:number, usuario: any) {
+    return this.httpClient.put(baseURL+"/usuarios/"+id, usuario)
   }
 
 }

@@ -13,34 +13,46 @@ export class ListadoUsuariosComponent {
 
   listaUsuarios!: any[];
   paginaActual: number;
-  totalPaginas: number;
+  paginasTotales: number;
+  numeroUsuarios!: number;
+  maximosUsuarios: number = 10;
 
   usuario!:any;
 
   constructor(private usuarioService:UsuarioService, private router:Router) {
     this.paginaActual = 1;
-    this.totalPaginas = 1;
+    this.paginasTotales = 1;
     this.obtenerUsuarios();
   }
 
   paginaAnterior(): void {
     this.paginaActual--;
     this.listaUsuarios = [];
-    this.obtenerUsuarios();
+    this.obtenerUsuariosPorPagina();
   }
 
   paginaSiguiente(): void {
     this.paginaActual++;
     this.listaUsuarios = [];
-    this.obtenerUsuarios();
+    this.obtenerUsuariosPorPagina();
   }
 
   obtenerUsuarios():void{
       this.usuarioService.getAllUsers().subscribe((data:any)=>{
-        console.log(data);
+        console.log("obtenerusuarios: "+data);
+        console.log("Numero de usuarios registrados: "+data.length)
         this.listaUsuarios=data;
       })
   }
+
+  obtenerUsuariosPorPagina():void{
+    this.usuarioService.getAllUsersByPage(this.paginaActual).subscribe((data:any)=>{
+      console.log(data);
+      this.listaUsuarios=data;
+      this.numeroUsuarios=data.length;
+      this.paginasTotales = Math.round(this.numeroUsuarios / this.maximosUsuarios);
+    });
+}
 
   eliminarUsuario(id:number, username:string){
     Swal.fire({

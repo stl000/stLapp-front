@@ -26,6 +26,7 @@ import {MatListModule} from '@angular/material/list';
 import { SidebarComponent } from './componentes/sidebar/sidebar.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
+import { PaginationComponent } from './componentes/gestor-usuarios/pagination/pagination.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import {MatIconModule} from '@angular/material/icon';
     DashboardComponent,
     ListadoUsuariosComponent,
     SidebarComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

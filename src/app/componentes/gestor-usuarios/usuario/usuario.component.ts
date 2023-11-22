@@ -57,13 +57,6 @@ export class UsuarioComponent {
 
     }, error => console.log(error));
 
-    this.authService.getUserRol().subscribe(
-      (data:any) => {
-        console.log(data)
-        this.rolData=data;
-      }, (error: any) => {
-        console.log(error)
-      })
   }
 
   actualizarUsuario(){
@@ -83,8 +76,8 @@ export class UsuarioComponent {
         return;
       }
     }
-    console.log(this.usuarioData)
-    this.usuarioService.updateUsuarioById(this.id, this.usuarioData, this.rolData).subscribe((data:any)=>{
+
+    this.usuarioService.updateUsuarioById(this.id, this.usuarioData).subscribe((data:any)=>{
       console.log("data de update: "+data)
       Swal.fire("Usuario actualizado con éxito","El usuario se ha actualizado correctamente", "success").then( () => {
         window.location.href="/gestor-usuarios";
